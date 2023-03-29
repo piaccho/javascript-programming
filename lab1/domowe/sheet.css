@@ -1,0 +1,120 @@
+* {
+    font-size: 2vh;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+body {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+aside {
+    /* Specyfikacja wyglądu */ 
+    flex-basis: 50%;
+}
+
+footer {
+    /* Specyfikacja wyglądu */
+    flex-basis: 100%;
+}
+
+header {
+    /* Specyfikacja wyglądu */
+    flex-basis: 100%;
+}
+
+main {
+    /* Specyfikacja wyglądu */
+    flex-basis: 40%;
+}
+
+nav {
+    /* Specyfikacja wyglądu */
+    height: fit-content;
+}
+
+nav ul {
+    /* Specyfikacja wyglądu */
+}
+
+nav li {
+    /* Specyfikacja wyglądu */
+}
+
+.azure {
+    background-color: azure;
+    border: 1px solid black;
+    box-shadow: 0px 0px 15px black;
+    margin: 5px 10px;
+    padding: 10px;
+}
+
+h2 {
+    margin: 0;
+}
+
+blockquote {
+    margin: 0 0 20px 0;
+}
+
+main h1 {
+    margin-bottom: 1vh;
+}
+
+/* animacja */
+
+:root {
+    --text-first-color: #0015ff;
+    --text-second-color: rgb(0, 234, 255);
+}
+
+@keyframes colorful-text-headers {
+    0% {
+        color: var(--text-first-color);
+    }
+    100% {
+        color: var(--text-second-color);
+    }
+}
+
+h1 {
+    margin: 0;
+    animation-name: colorful-text-headers;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* responsywność */
+
+@media (max-width: 767px) {
+    * {
+        margin: 0;
+    }
+
+    body {
+        padding: 0;
+    }
+
+    header,
+    nav,
+    aside,
+    main,
+    footer {
+        flex-basis: 100%;
+        width: 100vw;
+    }
+
+    h1,
+    h2 {
+        font-size: 1.2rem;
+    }
+}

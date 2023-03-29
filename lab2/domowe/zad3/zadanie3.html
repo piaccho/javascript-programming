@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Page title</title>
+</head>
+
+<body>
+    <main>
+        <h1>Płótno</h1>
+        <canvas id="canvas" width="500" height="500" style="border:1px solid #000000;">
+            Wygląda na to, że twoja przeglądarka nie obsługuje elementu "canvas"
+        </canvas>
+    </main>
+    <script>
+        "use strict"; // Nie wyłączaj trybu ścisłego    
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var ctxWidth = canvas.width 
+        var ctxHeight = canvas.height
+        const HEIGHT_SHIFT = -80
+        // ctx.fillText("Hello World", 10, 10); //Wykreślenie podanego tekstu na płótnie
+
+        ctx.strokeStyle='black';
+        // logo frame
+        ctx.lineWidth = 30;
+        ctx.arc(ctxWidth / 2, ctxHeight / 2, ctxWidth/2 - 15, 2 * Math.PI, 0, false);
+        ctx.fillStyle = 'lime';
+        ctx.fill();
+        ctx.stroke();
+
+        // bicycle frame
+        ctx.lineCap = 'round';
+        ctx.lineWidth = 6;
+        ctx.moveTo(ctxWidth / 4, HEIGHT_SHIFT + ctxHeight*3 / 4);
+        ctx.lineTo(ctxWidth*5 / 8, HEIGHT_SHIFT + ctxHeight/ 2);
+
+        ctx.moveTo(ctxWidth*1 / 4, HEIGHT_SHIFT + ctxHeight*3 / 4);
+        ctx.lineTo(ctxWidth / 2, HEIGHT_SHIFT + ctxHeight*3 / 4);
+        ctx.lineTo(ctxWidth*3 / 8, HEIGHT_SHIFT + ctxHeight / 2);
+
+        ctx.moveTo(ctxWidth*3 / 8 - 20, HEIGHT_SHIFT + ctxHeight / 2);
+        ctx.lineTo(ctxWidth*3 / 8 + 20, HEIGHT_SHIFT + ctxHeight / 2);
+
+        ctx.moveTo(ctxWidth / 2, HEIGHT_SHIFT + ctxHeight*3 / 4);
+        ctx.lineTo(ctxWidth*5 / 8, HEIGHT_SHIFT + ctxHeight / 2);
+
+        ctx.moveTo(ctxWidth*3/4, HEIGHT_SHIFT + ctxHeight*3/4);
+        ctx.lineTo(ctxWidth*5 / 8 - 14, HEIGHT_SHIFT + ctxHeight / 2 - 30);
+        ctx.lineTo(ctxWidth*5 / 8 + 20, HEIGHT_SHIFT + ctxHeight / 2 - 30);
+
+        ctx.arc(ctxWidth*5 / 8 + 20, HEIGHT_SHIFT + ctxHeight / 2 - 15, 15, 0, 0.5 * Math.PI, false);
+        
+        // wheel 1
+        ctx.moveTo(ctxWidth / 4 + 70, HEIGHT_SHIFT + ctxHeight*3 / 4)
+        ctx.arc(ctxWidth / 4, HEIGHT_SHIFT + ctxHeight*3 / 4, 70, 2 * Math.PI, 0, false);
+
+        // wheel 2
+        ctx.moveTo(ctxWidth*3 / 4 + 70, HEIGHT_SHIFT + ctxHeight*3 / 4)
+        ctx.arc(ctxWidth*3 / 4, HEIGHT_SHIFT + ctxHeight*3 / 4, 70, 2 * Math.PI, 0, false);
+        ctx.stroke();
+
+    </script>
+</body>
+
+</html>

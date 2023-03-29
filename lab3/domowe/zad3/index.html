@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin=""></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin=""></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Counter extends React.Component {
+            startAnimation = (event) => {
+                document.forms[0].start.disabled = true;
+                document.forms[0].stop.disabled = false;
+                animation = window.requestAnimationFrame(step);
+            }
+
+            step = () => {
+                document.forms[0].counter.value = i++;
+                animation = window.requestAnimationFrame(step);
+            }
+
+            stopAnimation = (event) => {
+                document.forms[0].start.disabled = false;
+                document.forms[0].stop.disabled = true;
+                window.cancelAnimationFrame(animation)
+            }
+
+            render() {
+                return <div>
+                    <label>Counter→ {this.props.welcome}</label>
+                    <br/>
+                    <button onClick={this.startAnimation}>Start</button>
+                    <button onClick={this.stopAnimation}>Stop</button>
+                </div>
+            }
+        }
+
+        class Computations extends React.Component {
+            // Obserwator zdarzenia 'Change' - ta metoda jest wywoływana, gdy pojawi się zdarzenie 'Change' 
+            handleAlgorithmResult(value) {
+                this.setState({ result: value });
+            }
+
+            render() {
+                return (
+                    <React.Fragment>
+                        <div>
+                            <label>Result: {this.props.result}</label>
+                            <br/>
+                        </div>
+                        <br/>
+                        <Algorithm welcome="Hello World" />
+                        <br/>
+                    </React.Fragment>
+                );
+            }
+        }
+
+        class Algorithm extends React.Component {
+            constructor(props) {
+                super(props);
+                this.handleAlgorithmResult = this.handleAlgorithmResult.bind(this);
+            }
+            // Obserwator zdarzenia 'Change' - ta metoda jest wywoływana, gdy pojawi się zdarzenie 'Change' 
+            handleAlgorithmResult(value) {
+                this.props.handleAlgorithmResult(e.target.value);
+            }
+
+            render() {
+                return (
+                    <React.Fragment>
+                        <label>Number of iterations: <input value={this.props.text} onChange={this.handleTextChange} /></label>
+               
+                    </React.Fragment>
+                );
+            }
+        }
+
+        class Main extends React.Component {
+            render() {
+                return (
+                    <React.Fragment>
+                        <Counter welcome="Hello World" />
+                        <br/>
+                        <Computations />
+                        <br/>
+                        <Counter welcome="Hello World" />
+                        <br/>
+                        <Computations />
+                        <br/>
+                    </React.Fragment>
+                );
+            }
+        }
+        const container = document.getElementById('root'); // Pobieranie referencji na kontener
+        const root = ReactDOM.createRoot(container);       // Tworzenie korzenia React-a dla podanego kontenera
+        root.render(<Main />);      // Renderowanie komponentu
+      //   var animation;
+      //   var i = 0;
+
+      //   function calculatePrimes() {
+      //     const iterations = document.forms[0].iterations_main.value || 50;
+      //     // Source: https://udn.realityripple.com/docs/Tools/Performance/Scenarios/Intensive_JavaScript
+      //     var primes = [];
+      //     for (var i = 0; i < iterations; i++) {
+      //       var candidate = i * (1000000000 * Math.random());
+      //       var isPrime = true;
+      //       for (var c = 2; c <= Math.sqrt(candidate); ++c) {
+      //         if (candidate % c === 0) {
+      //           // not prime
+      //           isPrime = false;
+      //           break;
+      //         }
+      //       }
+      //       if (isPrime) {
+      //         primes.push(candidate);
+      //       }
+      //     }
+      //     return primes;
+      //   }
+
+      //   function startAnimation() {
+      //     document.forms[0].start.disabled = true;
+      //     document.forms[0].stop.disabled = false;
+      //     animation = window.requestAnimationFrame(step);
+      //   }
+
+      //   function step() {
+      //     document.forms[0].counter.value = i++;
+      //     animation = window.requestAnimationFrame(step);
+      //   }
+
+      //   function stopAnimation() {
+      //     document.forms[0].start.disabled = false;
+      //     document.forms[0].stop.disabled = true;
+      //     window.cancelAnimationFrame(animation)
+      //   }
+    </script>
+</body>
+
+</html>

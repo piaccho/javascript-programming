@@ -1,0 +1,23 @@
+.azure {
+    background-color: azure;
+    border: 1px solid black;
+    box-shadow: 0px 0px 15px black;
+    margin: 5px 10px;
+    padding: 10px;
+}
+
+/* animacja */
+
+:root {
+    --text-first-color: #0015ff;
+    --text-second-color: rgb(0, 234, 255);
+}
+
+@keyframes colorful-text-headers {
+    0% {
+        color: var(--text-first-color);
+    }
+    100% {
+        color: var(--text-second-color);
+    }
+}
