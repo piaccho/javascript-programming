@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    
+    <div>
+        <input-text name='name1' label='Nowy label'></input-text>
+    </div>
+
+    <div>
+        <input-text name='name2' value='Default'></input-text>
+    </div>
+
+    <div>
+        <input-text name='name3' error='error label'></input-text>
+    </div>
+
+
+    <script>
+        const template = document.createElement('template');
+        template.innerHTML = `
+        <style>
+            .input-container {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .error-label {
+            color: red;
+            }
+        </style>
+        <div class='input-container'>
+        <label>Default label</label>
+        <input name='default'/>
+        <div class='error-label'></div>
+        </div>
+        `
+
+
+        class Input extends HTMLElement {
+            constructor() {
+                super();
+                this._shadowRoot = this.attachShadow({ 'mode': 'open' });
+                this._shadowRoot.appendChild(template.content.cloneNode(true));
+            }
+
+            connectedCallback() {
+                const name = this.getAttribute('name');
+                const error = this.getAttribute('error');
+                const value = this.getAttribute('value');
+                const label = this.getAttribute('label');
+
+                const input = this._shadowRoot.querySelector('input')
+                input.setAttribute('name', name);
+
+                this._shadowRoot.querySelector('.error-label').innerText = error;
+
+                if (value)
+                    input.setAttribute('value', value);
+
+                if (label)
+                    this._shadowRoot.querySelector('label').innerText = label;
+            }
+        }
+
+
+        window.customElements.define('input-text', Input);
+    </script>
+</body>
+
+</html>
