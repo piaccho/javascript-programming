@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+          crossorigin="anonymous"><!-- Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Components</title>
+</head>
+
+<body>
+    <!-- Root Component -->
+    <app-root></app-root>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+          crossorigin="anonymous"></script>
+
+    <!-- Web Components script -->
+    <script>
+        const bootstrapLinks = `
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+                        rel="stylesheet"
+                        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+                        crossorigin="anonymous"><!-- Icons -->
+                    <link rel="stylesheet"
+                        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+                    <link rel="stylesheet"
+                        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+                `;
+
+        class GreenComponent extends HTMLElement {
+            constructor() {
+                super();
+                this.attachShadow({ mode: 'open' });
+                this.counter = 0;
+                this.isDisabled = true;
+                this.handleStartClick = this.handleStartClick.bind(this);
+                this.handleStopClick = this.handleStopClick.bind(this);
+            }
+
+            connectedCallback() {
+                this.render();
+
+                this.shadowRoot.querySelector("#start-btn").addEventListener('click', this.handleStartClick)
+                this.shadowRoot.querySelector("#stop-btn").addEventListener('click', this.handleStopClick)
+            }
+
+            handleStartClick = () => {
+                if (this.isDisabled) {
+                    this.isDisabled = false;
+                    this.interval = setInterval(() => {
+                        this.counter += 1;
+                        this.render();
+                        // this.shadowRoot.querySelector("#counter").innerHTML = this.counter;
+                    }, 1000);
+                }
+                
+            }
+
+            handleStopClick = () => {
+                clearInterval(this.interval);
+                this.isDisabled = true;
+            }
+
+            render() {
+                this.shadowRoot.innerHTML = bootstrapLinks + `
+                    <style>
+                        span {
+                            color: red;
+                            font-size: 30px;
+                        }
+                    </style>
+                    <div class='alert alert-success m-3 w-75'>
+                        <label>Counter→ <span>${this.counter}</span></label>
+                        <br/>
+                        <button id="start-btn">Start</button>
+                        <button id="stop-btn">Stop</button>
+                    </div>
+                `
+            }
+        }
+
+
+        class YellowComponent extends HTMLElement {
+            constructor() {
+                super();
+                this.attachShadow({ mode: 'open' });
+            }
+
+            static get observedAttributes() { return ['computation-result']; }
+
+            connectedCallback() {
+                this.render();
+            }
+
+            attributeChangedCallback(name, oldVal, newVal) {
+                if (name === 'computation-result')
+                    this.shadowRoot.querySelector("#result").innerHTML = newVal;
+            }
+
+            render() {
+                this.shadowRoot.innerHTML = bootstrapLinks + `
+                    <div class='alert alert-warning'>Result: <span id="result"></span></div>
+                `
+            }
+        }
+
+
+        class RedComponent extends HTMLElement {
+            constructor() {
+                super();
+                this.attachShadow({ mode: 'open' });
+            }
+
+            connectedCallback() {
+                this.render();
+
+                this.shadowRoot.querySelector("#run-computation").addEventListener("click", this.runComputation)
+            }   
+
+            runComputation = () => {
+                this.worker = new Worker("worker.js");
+        
+                this.worker.onmessage = (event) => {
+                    let workerResult = event.data;
+                    if (Array.isArray(workerResult)) {
+                        let values = workerResult.map((el, index) => {
+                            return `(${index + 1}) ${el}`;
+                        });
+                        // this.setAttribute("passed-result", values.join(' '));
+
+                        const event = new CustomEvent('value-passed', {
+                            detail: { value: values.join(' ') }
+                        });
+                        this.dispatchEvent(event);
+                    
+                    }
+                    this.worker.terminate();
+                };
+
+                this.worker.postMessage(this.shadowRoot.querySelector("#iteration-input").value); 
+            }
+            
+            render() {
+                this.shadowRoot.innerHTML = bootstrapLinks + `
+                    <style>
+                        input {
+                            width: 10%;
+                        }
+                    </style>
+                    <div class='alert alert-danger'>
+                        <label class='me-2'>Number of iterations:</label>
+                        <input id='iteration-input' class='me-3' value=''/>
+                        <button id='run-computation'>Run calculation</button>
+                    </div>
+                `;
+            }
+        }
+
+
+        
+        class GreyComponent extends HTMLElement {
+            constructor() {
+                super();
+                this.attachShadow({ mode: 'open' });
+                this.onValuePassed = this.onValuePassed.bind(this);
+            }
+
+            connectedCallback() {
+                this.render();
+
+                this.shadowRoot.querySelector("red-component").addEventListener("value-passed", this.onValuePassed);
+                    // Also we can deal with it using MutationObserver
+                // const observer = new MutationObserver(mutations => {
+                //     mutations.forEach(mutation => {
+                //         if (mutation.type === 'attributes' && mutation.attributeName === 'passed-result') {
+                //             this.shadowRoot.querySelector("yellow-component").setAttribute("computation-result", mutation.target.getAttribute("passed-result"));
+                //         }
+                //     });
+                // });
+                // observer.observe(this.shadowRoot.querySelector("red-component"), { attributes: true });
+            }   
+
+            onValuePassed(event) {
+                console.log(this.shadowRoot);
+                this.shadowRoot.querySelector("yellow-component").setAttribute("computation-result", event.detail.value);
+            }
+
+            render() {
+                this.shadowRoot.innerHTML = bootstrapLinks + `
+                    <div class='alert alert-dark m-3 w-75'>
+                        <yellow-component></yellow-component>
+                        <red-component></red-component>
+                    </div>
+                `;
+            }
+        }
+
+        
+        class App extends HTMLElement {
+            constructor() {
+                super();
+                this.attachShadow({ mode: 'open' });
+            }
+
+            connectedCallback() {
+                this.render();
+            }
+
+            render() {
+                this.shadowRoot.innerHTML = bootstrapLinks + `
+                    <green-component></green-component>
+                    <grey-component></grey-component>
+                    <green-component></green-component>
+                    <grey-component></grey-component>
+                `;
+            }
+        }
+        
+        customElements.define('green-component', GreenComponent);
+        customElements.define('yellow-component', YellowComponent);
+        customElements.define('red-component', RedComponent);
+        customElements.define('grey-component', GreyComponent);
+        customElements.define('app-root', App);
+    </script>
+</body>
+
+</html>

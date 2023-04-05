@@ -16,7 +16,7 @@
           crossorigin=""></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <title>
-      Example 1
+      React Components
     </title>
   </head>
   <body>
@@ -73,11 +73,13 @@
 
                 this.worker.onmessage = (event) => {
                     let workerResult = event.data;
-                    let values = workerResult.map((el, index) => {
-                        return `(${index + 1}) ${el}`;
-                    });
-                    const strValue = values.join(' '); 
-                    this.props.handleCalculatedValue(strValue);
+                    if (Array.isArray(workerResult)) {
+                        let values = workerResult.map((el, index) => {
+                            return `(${index + 1}) ${el}`;
+                        });
+                        const strValue = values.join(' '); 
+                        this.props.handleCalculatedValue(strValue);
+                    }
                     this.worker.terminate();
                 };
 

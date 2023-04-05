@@ -18,6 +18,11 @@ nav img {
     margin-right: 10px;
 }
 
+.wrapper img {
+    border-radius: 5px;
+}
+
+
 
 @keyframes orbit-1 {
     from {

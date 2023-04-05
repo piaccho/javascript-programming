@@ -1,0 +1,66 @@
+{
+  "1": {
+    "type": "rower wyścigowy",
+    "brand": "BOTTECCHIA",
+    "model_id": 1,
+    "name": "Rower wyścigowy BOTTECCHIA XC3",
+    "img_url": "https://a.allegroimg.com/s1024/0c8ff0/ffd228304675a5472e03be4fdf3b",
+    "rent_by": null
+  },
+  "2": {
+    "type": "rower wyścigowy",
+    "brand": "BOTTECCHIA",
+    "model_id": 1,
+    "name": "Rower wyścigowy BOTTECCHIA XC3",
+    "img_url": "https://a.allegroimg.com/s1024/0c8ff0/ffd228304675a5472e03be4fdf3b",
+    "rent_by": null
+  },
+  "3": {
+    "type": "rower górski",
+    "brand": "Kross Hexagon",
+    "model_id": 1,
+    "name": "Rower górski Kross Hexagon Alfa-2",
+    "img_url": "https://www.greenbike.pl/images/hexagon_black_white_graphite_glossy22.jpg",
+    "rent_by": null
+  },
+  "4": {
+    "type": "rower górski",
+    "brand": "Kross Hexagon",
+    "model_id": 1,
+    "name": "Rower górski Kross Hexagon Alfa-2",
+    "img_url": "https://www.greenbike.pl/images/hexagon_black_white_graphite_glossy22.jpg",
+    "rent_by": null
+  },
+  "5": {
+    "type": "hulajnoga",
+    "brand": "TECHLIFE",
+    "model_id": 1,
+    "name": "Hulajnoga TECHLIFE SPEED",
+    "img_url": "https://e-hulajnoga.pl/public/assets/techlife/x8/1.jpg",
+    "rent_by": null
+  },
+  "6": {
+    "type": "rower górski",
+    "brand": "OXFELD",
+    "model_id": 1,
+    "name": "Rower MTB OXFELD XC-6",
+    "img_url": "https://www.centrumrowerowe.pl/photo/product/oxfeld-xc-6-2-174027-f-sk7-w780-h554_1.webp",
+    "rent_by": null
+  },
+  "7": {
+    "type": "rower górski",
+    "brand": "OXFELD",
+    "model_id": 1,
+    "name": "Rower MTB OXFELD XC-6",
+    "img_url": "https://www.centrumrowerowe.pl/photo/product/oxfeld-xc-6-2-174027-f-sk7-w780-h554_1.webp",
+    "rent_by": null
+  },
+  "8": {
+    "type": "rower górski",
+    "brand": "OXFELD",
+    "model_id": 2,
+    "name": "Rower MTB OXFELD AF-2",
+    "img_url": "https://www.centrumrowerowe.pl/photo/product/oxfeld-xc-2w-2-160842-f-sk7-w780-h554_1.webp",
+    "rent_by": null
+  }
+}
