@@ -3,4 +3,6 @@ Implementations of tasks carried out as part of the Computer Science AGH UST Jav
 Progress:
 - [x] Lab 1
 - [x] Lab 2
-- [ ] Lab 3 
+- [x] Lab 3 
+- [ ] Lab 4 
+
