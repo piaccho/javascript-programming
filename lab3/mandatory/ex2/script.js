@@ -3,6 +3,7 @@ const quote = ["Natenczas Wojski chwycił na taśmie przypięty", "Swój róg ba
 let quote_idx = 0;
 
 function noCSS() {
+    state = false;
     document.querySelectorAll('*').forEach(element => {
         element.className = "";
         element.removeAttribute('style');
@@ -10,10 +11,12 @@ function noCSS() {
 }
 
 // default look
+let state = false;
 window.addEventListener('load', noCSS)
 
 // set css
 document.getElementById("set").addEventListener('click', () => {
+    state = true;
     document.querySelectorAll('h1').forEach(element => {
         element.style.fontSize = '2em';
         element.style.margin = '0';
@@ -62,13 +65,14 @@ document.getElementById("set").addEventListener('click', () => {
     document.querySelector('div').style.width = '100%';
 });
 
-// restore default look
+// restore default look button
 document.getElementById("delete").addEventListener('click', noCSS);
 
 
 document.getElementById("add").addEventListener('click', () => {
     let p = document.createElement('p')
-    p.style.margin = '0';
+    if (state === true)
+        p.style.margin = '0';
     const p_text = document.createTextNode(quote[quote_idx]);
     
     if (quote[quote_idx].localeCompare('<br>') == 0) {

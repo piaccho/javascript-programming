@@ -15,6 +15,7 @@ function calculatePrimes(iterations) {
         primes.push(candidate);
         }
     }
+
     return primes;
 }
 
@@ -22,18 +23,16 @@ function calculatePrimes(iterations) {
 onmessage = (e) => {
     switch(e.data) {
         case 'start':
-            this.postMessage('watek uruchomiony!');
-            break;
-        case 'stop':
-            this.postMessage('watek zatrzymany!');
-            this.close(); // zatrzymanie skryptu wewnatrz watku roboczego
+            this.postMessage('run');
             break;
         default:
-            const iterations = Number.parseInt(e.data)   
+            const iterations = Number.parseInt(e.data)
             if (Number.isInteger(iterations)) {
                 this.postMessage(calculatePrimes(iterations));
             } else {
-                this.postMessage("błędna wartość");
+                this.postMessage("err");
             }
     }
 };
+
+
