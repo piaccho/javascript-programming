@@ -3,6 +3,9 @@ import { dbQuery, addToDB, getLatestDataFromDB } from './dbFunctions.js'
 import { infoVehicle, rentVehicle, buyVehicle, returnVehicle, unrentAllVehicles, vehicleCardAction} from './appActions.js'
 const DB_SIZE = 50;
 let dbItems = [];
+
+let newDBITEMS = []
+
 let currentFilters = null;
 let actionFilterSet;
 let typeFilterSet;
