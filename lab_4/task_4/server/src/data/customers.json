@@ -1,1 +1,24 @@
-[{"customer_id":0,"first_name":"Paulina","last_name":"Nowak"},{"customer_id":1,"first_name":"Anna","last_name":"Wójcik"},{"customer_id":2,"first_name":"Michał","last_name":"Woźniak"},{"customer_id":3,"first_name":"Katarzyna","last_name":"Woźniak"},{"customer_id":4,"first_name":"Michał","last_name":"Woźniak"}]
+{
+    "customers": [
+        {
+            "customer_id": 0,
+            "first_name": "Kamil",
+            "last_name": "Kowalczyk"
+        },
+        {
+            "customer_id": 1,
+            "first_name": "Piotr",
+            "last_name": "Kowalczyk"
+        },
+        {
+            "customer_id": 2,
+            "first_name": "Jan",
+            "last_name": "Kowalski"
+        },
+        {
+            "customer_id": 3,
+            "first_name": "Sebastian",
+            "last_name": "Piaskowy"
+        }
+    ]
+}

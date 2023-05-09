@@ -154,8 +154,9 @@ const generatorBase = {
 }
 
 function generateRandomVehiclesData(numRecords) {
-    const data = [];
-
+    const data = {};
+    
+    const vehicles = [];
     for (let i = 0; i < numRecords; i++) {
         let canBeBought = false;
         let canBeRent = false;
@@ -171,6 +172,7 @@ function generateRandomVehiclesData(numRecords) {
         const models = Object.keys(generatorBase[randomType][randomBrand]);
         const randomModel = models[Math.floor(Math.random() * models.length)];
         let record = {
+        // data[i] = {
             vehicle_id: i,
             type: randomType,
             brand: randomBrand,
@@ -182,32 +184,36 @@ function generateRandomVehiclesData(numRecords) {
             rent_by: null,
             bought_by: null,
         };
-        data.push(record);
+        vehicles.push(record);
     }
+    data.vehicles = vehicles;
     return data;
 }
 
 function generateRandomPeopleData(numRecords) {
-    const data = [];
-
+    const data = {};
+    
+    const customers = [];
     for (let i = 0; i < numRecords; i++) {
         const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
         const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
 
+        // data[i] = {
         let record = {
             customer_id: i,
             first_name: firstName,
             last_name: lastName,
         };
-        data.push(record);
+        customers.push(record);
     }
+    data.customers = customers
     return data;
 }
 
 function generateJSONDB(vehiclesNo=0, peopleNo=0) {
     if (vehiclesNo !== 0) {
         const dataVehicles = generateRandomVehiclesData(vehiclesNo);
-        const jsonVehicles = JSON.stringify(dataVehicles);
+        const jsonVehicles = JSON.stringify(dataVehicles, null, 4);
 
         fs.writeFile('./src/data/vehicles.json', jsonVehicles, 'utf8', (err) => {
             if (err) {
@@ -220,7 +226,7 @@ function generateJSONDB(vehiclesNo=0, peopleNo=0) {
 
     if (peopleNo !== 0) {
         const dataPeople = generateRandomPeopleData(peopleNo);
-        const jsonPeople = JSON.stringify(dataPeople);
+        const jsonPeople = JSON.stringify(dataPeople, null, 4);
 
         fs.writeFile('./src/data/customers.json', jsonPeople, 'utf8', (err) => {
             if (err) {

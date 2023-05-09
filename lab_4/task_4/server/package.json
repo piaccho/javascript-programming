@@ -14,5 +14,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module"
+  "type": "module",
+  "proxy": "http://localhost:8088",
+  "dependencies": {
+    "proxy": "^2.0.1"
+  },
+  "devDependencies": {
+    "supertest": "^6.3.3"
+  }
 }
