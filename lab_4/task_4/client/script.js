@@ -55,16 +55,14 @@ async function apiGetDBRequest() {
 
 async function apiActionRequest(event, action) {
     event.preventDefault();
-    let dataToPass = {
-        arguments: document.querySelector(`#${action}-args`).value
-    } 
+    let dataToPass = document.querySelector(`#${action}-args`).value;
     await fetch(`${serverURL}/api/${action}`, {
             method: 'POST',
             mode: "no-cors",
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'text/plain; charset=UTF-8',
             },
-            body: JSON.stringify(dataToPass)
+            body: `arguments=${dataToPass}`
         }).then(response => response.json()).then(data => console.log({data}))
 }
 
@@ -209,10 +207,13 @@ async function renderPage(filters) {
 function initEvents() {
     // modify DB
 
-    // document.getElementById("rent-vehicle").addEventListener('submit', async (e) => {
-    //     await apiActionRequest(e, "rent");
-    //     // renderPage(currentFilters);
+    // document.getElementById("rent-vehicle").addEventListener('submit', (e) => {
+    //     e.preventDefault();
     // });
+    document.getElementById("rent-vehicle").addEventListener('submit', async (e) => {
+        await apiActionRequest(e, "rent");
+        // renderPage(currentFilters);
+    });
     document.getElementById("buy-vehicle").addEventListener('submit', async (e) => {
         await apiActionRequest(e, "buy");
         // renderPage(currentFilters);

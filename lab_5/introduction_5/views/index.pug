@@ -1,0 +1,48 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+        title Second Express application
+    body
+        main
+            h1 Second Express application
+            if mode
+                form(method='GET' action='/query')
+                    label(for='department') Podaj wydział
+                    input(name='department')
+                    br
+                    input(type='submit')
+                    input(type='reset')
+            else
+                form(method='POST' action='/')
+                    label(for='name') Give your name
+                    input(name='name')
+                    br
+                    input(type='submit')
+                    input(type='reset')
+            img(src="/img/logo.png", alt="Logo", style="height: 100px")
+            table
+                if mode
+                    thead
+                        tr
+                            th Nazwisko
+                            th Imię
+                            th Wydział
+                else 
+                    thead
+                        tr
+                            th Nazwisko
+                            th Imię
+                tbody
+                    if mode
+                        each val in students
+                            tr 
+                                td #{val.firstname}
+                                td #{val.secondname}
+                                td #{val.faculty}
+                    else
+                        each val in students
+                            tr 
+                                td #{val.lname}
+                                td #{val.fname}

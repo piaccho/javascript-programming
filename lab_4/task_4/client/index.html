@@ -97,18 +97,18 @@
                 <div class="card card-body">
                     <div class="commands container-fluid d-flex flex-column align-items-start">
                         <!-- RENT -->
-                        <form action="http://localhost:5501/api/rent" method="POST" id="rent-vehicle"  class="mb-2 d-flex flex-row align-items-center w-100">
-                        <!-- <form id="rent-vehicle"  class="mb-2 d-flex flex-row align-items-center w-100"></form> -->
+                        <!-- <form action="http://localhost:5501/api/rent" method="POST" id="rent-vehicle"  class="mb-2 d-flex flex-row align-items-center w-100"> -->
+                        <form id="rent-vehicle"  class="mb-2 d-flex flex-row align-items-center w-100">
                             <label for="rent-vehicle" class="w-25">Rent a vehicle:</label>
                             <div class="form-group me-4 w-50">
                                 <textarea id="rent-args" rows ="1" name="arguments" placeholder="vehicle_id, borrower_firstname, borrower_lastname" required></textarea>
                             </div>
-                            <!-- <button id="rent-vehicle-btn" class="btn btn-outline-secondary flex-fill">
-                                Rent
-                            </button> -->
-                            <button type="submit" id="rent-vehicle-btn" class="btn btn-outline-secondary flex-fill">
+                            <button id="rent-vehicle-btn" class="btn btn-outline-secondary flex-fill">
                                 Rent
                             </button>
+                            <!-- <button type="submit" id="rent-vehicle-btn" class="btn btn-outline-secondary flex-fill">
+                                Rent
+                            </button> -->
                         </form>
                         <!-- BUY -->
                         <form id="buy-vehicle" class="mb-2 d-flex flex-row align-items-center w-100">

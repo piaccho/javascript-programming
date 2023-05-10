@@ -19,6 +19,11 @@
             "customer_id": 3,
             "first_name": "Sebastian",
             "last_name": "Piaskowy"
+        },
+        {
+            "customer_id": 4,
+            "first_name": "Kamil",
+            "last_name": "Kowalski"
         }
     ]
 }
