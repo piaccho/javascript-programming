@@ -45,7 +45,7 @@
             "buy_price": 900,
             "rent_price": 10,
             "img_url": "https://nicebike.pl/1066-large_default/rower-gorski-mtb-shimano-aluminiowy-275-nicebike.jpg",
-            "rent_by": 3,
+            "rent_by": null,
             "bought_by": null
         },
         {
@@ -57,7 +57,7 @@
             "buy_price": null,
             "rent_price": 10,
             "img_url": "https://www.centrumrowerowe.pl/photo/product/oxfeld-xc-2w-2-160842-f-sk7-w780-h554_1.webp",
-            "rent_by": 3,
+            "rent_by": null,
             "bought_by": null
         },
         {
