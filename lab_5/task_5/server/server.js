@@ -4,7 +4,11 @@ import express from 'express'
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import * as actions from './serverActions.js'
+// import adminRouter from './src/routes/Admin.js'
+// import userRouter from './src/routes/User.js'
+
+import adminRouter from './src/routes/Admin.js';
+import userRouter from './src/routes/User.js';
 
 let data = {};
 
@@ -108,11 +112,12 @@ async function getDbData(collectionName, query) {
 /* Configuring the application */
 /* *************************** */
 const app = express();
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-app.set('views', __dirname + '/views'); // Files with views can be found in the 'views' directory
+app.set('views', __dirname + '/src/views'); // Files with views can be found in the 'views' directory
 app.set('view engine', 'pug'); // Use the 'Pug' template system
+
 app.locals.pretty = app.get('env') === 'development'; // The resulting HTML code will be indented in the development environment
 
 /* ************************************************ */
@@ -125,19 +130,8 @@ app.use(express.urlencoded({ extended: false })); // for parsing form sent data
 /* "Routes" */
 /* ******** */
 
-app.get('/', function (request, response) {
-    response.render('index', locals); // Render the 'index' view
-});
-
-app.get('/submit', function (request, response) {
-    response.set('Content-Type', 'text/plain')
-    response.send(`Hello ${request.query.name}`); // Send a response to the browser
-});
-
-app.post('/', function (request, response) {
-    response.set('Content-Type', 'text/plain')
-    response.send(`Hello ${request.body.name}`);
-});
+app.use('/', userRouter);
+app.use('/admin', adminRouter);
 
 /* ************************************************ */
 

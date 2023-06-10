@@ -154,7 +154,7 @@ const generatorBase = {
 }
 
 function generateRandomVehiclesData(numRecords) {
-    const data = {};
+    // const data = {};
     
     const vehicles = [];
     for (let i = 0; i < numRecords; i++) {
@@ -186,28 +186,33 @@ function generateRandomVehiclesData(numRecords) {
         };
         vehicles.push(record);
     }
-    data.vehicles = vehicles;
-    return data;
+    // data.vehicles = vehicles;
+    // return data;
+    return vehicles;
 }
 
 function generateRandomPeopleData(numRecords) {
-    const data = {};
+    // const data = {};
     
-    const customers = [];
+    const users = [];
     for (let i = 0; i < numRecords; i++) {
         const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
         const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
 
         // data[i] = {
         let record = {
-            customer_id: i,
+            user_id: i,
+            type: "customer",
             first_name: firstName,
             last_name: lastName,
+            login: "xxx",
+            password: "xxx",
         };
-        customers.push(record);
+        users.push(record);
     }
-    data.customers = customers
-    return data;
+    // data.users = users;
+    // return data;
+    return users;
 }
 
 function generateJSONDB(vehiclesNo=0, peopleNo=0) {
@@ -215,7 +220,7 @@ function generateJSONDB(vehiclesNo=0, peopleNo=0) {
         const dataVehicles = generateRandomVehiclesData(vehiclesNo);
         const jsonVehicles = JSON.stringify(dataVehicles, null, 4);
 
-        fs.writeFile('./src/data/vehicles.json', jsonVehicles, 'utf8', (err) => {
+        fs.writeFile('./vehicles.json', jsonVehicles, 'utf8', (err) => {
             if (err) {
                 console.error(err);
             } else {
@@ -228,21 +233,21 @@ function generateJSONDB(vehiclesNo=0, peopleNo=0) {
         const dataPeople = generateRandomPeopleData(peopleNo);
         const jsonPeople = JSON.stringify(dataPeople, null, 4);
 
-        fs.writeFile('./src/data/customers.json', jsonPeople, 'utf8', (err) => {
+        fs.writeFile('./users.json', jsonPeople, 'utf8', (err) => {
             if (err) {
                 console.error(err);
             } else {
-                console.log(`Wygenerowano customers.json - ${customersNo} rekordów`);
+                console.log(`Wygenerowano users.json - ${usersNo} rekordów`);
             }
         });
     }
 }
 
 const vehiclesNo = Number.parseInt(argv[2]);
-const customersNo = Number.parseInt(argv[3]);
+const usersNo = Number.parseInt(argv[3]);
 
-if (Number.isNaN(vehiclesNo) || Number.isNaN(customersNo)) {
+if (Number.isNaN(vehiclesNo) || Number.isNaN(usersNo)) {
     console.log("Invalid arguments.\nUsage:\n\tnpm run gen_new_db <vehicles_number> <customers_number>");
 } else {
-    generateJSONDB(vehiclesNo, customersNo)
+    generateJSONDB(vehiclesNo, usersNo)
 }

@@ -1,0 +1,26 @@
+[
+    {
+        "user_id": 0,
+        "type": "customer",
+        "first_name": "Piotr",
+        "last_name": "Woźniak",
+        "login": "pwoznak",
+        "password": "pwoznak123"
+    },
+    {
+        "user_id": 1,
+        "type": "customer",
+        "first_name": "Katarzyna",
+        "last_name": "Woźniak",
+        "login": "kwozniak",
+        "password": "kwozniak123"
+    },
+    {
+        "user_id": 2,
+        "type": "customer",
+        "first_name": "Kamil",
+        "last_name": "Kowalczyk",
+        "login": "kkowalczyk",
+        "password": "kkowalczyk123"
+    }
+]

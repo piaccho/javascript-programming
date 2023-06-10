@@ -1,14 +1,12 @@
 {
-  "name": "server",
+  "name": "randomDB",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "randomDB.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --watch server.js"
   },
   "keywords": [],
   "author": "",

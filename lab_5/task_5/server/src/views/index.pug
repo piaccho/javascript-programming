@@ -7,9 +7,9 @@ html(lang='en')
     body
         main
             h1 Second Express application
-            form(method='POST' action='/')
-                label(for='name') Give your name
-                input(name='name')
+            form(method='GET' action='/query')
+                label(for='department') Podaj wydział
+                input(name='department')
                 br
                 input(type='submit')
                 input(type='reset')
