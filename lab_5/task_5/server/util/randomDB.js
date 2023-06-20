@@ -173,7 +173,7 @@ function generateRandomVehiclesData(numRecords) {
         const randomModel = models[Math.floor(Math.random() * models.length)];
         let record = {
         // data[i] = {
-            vehicle_id: i,
+            // vehicle_id: i,
             type: randomType,
             brand: randomBrand,
             model: randomModel,
@@ -181,7 +181,7 @@ function generateRandomVehiclesData(numRecords) {
             buy_price: canBeBought ? generatorBase[randomType][randomBrand][randomModel].buy_price : null,
             rent_price: canBeRent ? generatorBase[randomType][randomBrand][randomModel].rent_price : null,
             img_url: generatorBase[randomType][randomBrand][randomModel].img_url,
-            rent_by: null,
+            rented_by: null,
             bought_by: null,
         };
         vehicles.push(record);

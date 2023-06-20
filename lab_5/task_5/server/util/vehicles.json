@@ -1,0 +1,112 @@
+[
+    {
+        "type": "Rower górski",
+        "brand": "Bottecchia",
+        "model": "Alfa-2",
+        "name": "Rower górski Bottecchia Alfa-2",
+        "buy_price": 1200,
+        "rent_price": 10,
+        "img_url": "https://www.centrumrowerowe.pl/photo/product/oxfeld-xc-2w-2-160842-f-sk7-w780-h554_1.webp",
+        "rented_by": null,
+        "bought_by": null
+    },
+    {
+        "type": "Hulajnoga",
+        "brand": "Oxfeld",
+        "model": "Omega-X",
+        "name": "Hulajnoga Oxfeld Omega-X",
+        "buy_price": null,
+        "rent_price": 10,
+        "img_url": "https://motorq.pl/wp-content/uploads/2021/09/00_MG_3683-Edit_.png",
+        "rented_by": null,
+        "bought_by": null
+    },
+    {
+        "type": "Hulajnoga",
+        "brand": "Oxfeld",
+        "model": "Omega-X",
+        "name": "Hulajnoga Oxfeld Omega-X",
+        "buy_price": 1000,
+        "rent_price": null,
+        "img_url": "https://motorq.pl/wp-content/uploads/2021/09/00_MG_3683-Edit_.png",
+        "rented_by": null,
+        "bought_by": null
+    },
+    {
+        "type": "Hulajnoga",
+        "brand": "UrbanRacer",
+        "model": "XVF",
+        "name": "Hulajnoga UrbanRacer XVF",
+        "buy_price": 700,
+        "rent_price": 10,
+        "img_url": "https://www.rebelelectro.com/userdata/public/gfx/57594/photo_2344300.png",
+        "rented_by": null,
+        "bought_by": null
+    },
+    {
+        "type": "Rower górski",
+        "brand": "Kross Hexagon",
+        "model": "Ultra",
+        "name": "Rower górski Kross Hexagon Ultra",
+        "buy_price": 800,
+        "rent_price": 10,
+        "img_url": "https://prod-api.mediaexpert.pl/api/images/gallery_500_500/thumbnails/images/35/3537633/INDIANA-X-Enduro-7-7-M19-27-5-cala-meski-Szaro-czarny-new.jpg",
+        "rented_by": null,
+        "bought_by": null
+    },
+    {
+        "type": "Rower górski",
+        "brand": "Kross Hexagon",
+        "model": "AW10",
+        "name": "Rower górski Kross Hexagon AW10",
+        "buy_price": null,
+        "rent_price": 10,
+        "img_url": "https://nicebike.pl/1066-large_default/rower-gorski-mtb-shimano-aluminiowy-275-nicebike.jpg",
+        "rented_by": null,
+        "bought_by": null
+    },
+    {
+        "type": "Hulajnoga",
+        "brand": "Striker",
+        "model": "A10",
+        "name": "Hulajnoga Striker A10",
+        "buy_price": 2000,
+        "rent_price": null,
+        "img_url": "https://7way.pl/1909-large_default/hulajnoga-elektryczna-ruptor-r3-800w-175ah-48v.jpg",
+        "rented_by": null,
+        "bought_by": null
+    },
+    {
+        "type": "Rower górski",
+        "brand": "Ridley",
+        "model": "XYZ",
+        "name": "Rower górski Ridley XYZ",
+        "buy_price": 1150,
+        "rent_price": null,
+        "img_url": "https://sklep.szprychy.com/img/41080/rower-gorski-husar-m18-27-5-zielony",
+        "rented_by": null,
+        "bought_by": null
+    },
+    {
+        "type": "Hulajnoga",
+        "brand": "Striker",
+        "model": "A10",
+        "name": "Hulajnoga Striker A10",
+        "buy_price": 2000,
+        "rent_price": 10,
+        "img_url": "https://7way.pl/1909-large_default/hulajnoga-elektryczna-ruptor-r3-800w-175ah-48v.jpg",
+        "rented_by": null,
+        "bought_by": null
+    },
+    {
+        "type": "Hulajnoga",
+        "brand": "Techlife",
+        "model": "Alpha-10",
+        "name": "Hulajnoga Techlife Alpha-10",
+        "buy_price": 2500,
+        "rent_price": 10,
+        "img_url": "https://hulajnogi-ranking.pl/wp-content/uploads/sites/2/2019/09/Techlife-X2-1492-12.jpg",
+        "rented_by": null,
+        "bought_by": null
+    }
+]

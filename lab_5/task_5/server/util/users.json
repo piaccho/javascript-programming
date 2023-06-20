@@ -1,0 +1,18 @@
+[
+    {
+        "user_id": 0,
+        "type": "customer",
+        "first_name": "Piotr",
+        "last_name": "Nowak",
+        "login": "xxx",
+        "password": "xxx"
+    },
+    {
+        "user_id": 1,
+        "type": "customer",
+        "first_name": "Kamil",
+        "last_name": "Wójcik",
+        "login": "xxx",
+        "password": "xxx"
+    }
+]

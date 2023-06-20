@@ -89,7 +89,6 @@ export function deleteVehicle(req, res) {
 }
 
 
-
 export function getVehicles(req, res) {
     fs.readFile('./src/data/vehicles.json', 'utf8', (err, data) => {
         if (err) {
