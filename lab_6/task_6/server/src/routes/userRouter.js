@@ -9,11 +9,14 @@ router.all('/', (req, res) => {
         
         // main view and filters
         if (userId) {
+            console.log("RENDERING VIEW");
             userController.getView(req, res);
         } else {
             res.status(400).json({ error: 'Missing userId' });
         }
     } else if (req.method === 'POST') {
+        console.log("POST request");
+        console.log(req.body);
         const { userId, vehicleName, vehicleId } = req.body;
 
         if (userId) {
