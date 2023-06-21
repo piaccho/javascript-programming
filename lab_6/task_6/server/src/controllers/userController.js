@@ -45,7 +45,17 @@ const userController = {
                 acc[index].amount++;
             }
             return acc;
-        }, [])
+        }, []).sort((a, b) => {
+            const nameA = a.name.toUpperCase(); // Convert to uppercase for case-insensitive sorting
+            const nameB = b.name.toUpperCase();
+            if (nameA < nameB) {
+                return -1; // a should come before b
+            }
+            if (nameA > nameB) {
+                return 1; // a should come after b
+            }
+            return 0; // a and b are equal in terms of sorting
+        });
 
         res.json({ userRentedVehicles: userRentedVehicles, userBoughtVehicles: userBoughtVehicles, vehicleGroups: vehicleGroups});
     },
@@ -83,7 +93,7 @@ const userController = {
             const leftVehicles = await Vehicle.find({ rented_by: null, bought_by: null, name: vehicleName });
 
             console.log(`\n\x1b[32m${user.firstname} ${user.lastname} ${actionString} ${vehicle.name}\x1b[0m\n`);
-            return res.status(200).json({ message: `Vehicle ${actionString}`, leftVehicles: leftVehicles.length });
+            return res.status(200).json({ message: `Vehicle ${actionString}`, leftVehicles: leftVehicles.length, vehicle });
 
         } catch (error) {
             let actionString = '';

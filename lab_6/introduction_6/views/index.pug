@@ -116,11 +116,11 @@ html(lang='en')
                 let params;
                 // In GET method data passed as params in query
                 if (http_method === "GET") {
-                    url = 'http://localhost:8002/submit?name=' + encodeURIComponent(name);
+                    url = 'http://localhost:8005/submit?name=' + encodeURIComponent(name);
                     params = null
                 // In POST method data passed as params in body
                 } else if (http_method === "POST") {
-                    url = 'http://localhost:8002/submit';
+                    url = 'http://localhost:8005/submit';
                     params = "name=" + encodeURIComponent(name);
                 }
                 xhr.open(http_method, url, true);
@@ -168,9 +168,9 @@ html(lang='en')
 
                 let url;
                 if (http_method === "GET") {
-                    url = 'http://localhost:8002/submit?name=' + encodeURIComponent(name);
+                    url = 'http://localhost:8005/submit?name=' + encodeURIComponent(name);
                 } else if (http_method === "POST")  {
-                    url = "http://localhost:8002/submit"
+                    url = "http://localhost:8005/submit"
                 }
 
                 try {
@@ -240,13 +240,13 @@ html(lang='en')
                 tr
                     th HTTP
                     td 
-                        form(action="http://localhost:8002/submit", method="GET")
+                        form(action="http://localhost:8005/submit", method="GET")
                             label(for="name_GET") Your name
                             input(type="text", id="name_GET", name="name")
                             br
                             input(type="submit", value="text")
                     td 
-                        form(action="http://localhost:8002/submit", method="POST") 
+                        form(action="http://localhost:8005/submit", method="POST") 
                             label(for="name_POST") Your name
                             input(type="text", id="name_POST", name="name")
                             br

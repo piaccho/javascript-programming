@@ -1,4 +1,4 @@
-// @deno-types="npm:@types/express@^4"
+// @deno-types="npm:@types/express@4.18.2"
 
 // Deno include strict mode since Deno use ES6 
 // Deno doesnt include typing as default
@@ -13,7 +13,7 @@
 //      deno run --check --watch --allow-read --allow-env --allow-net app.ts
 
 
-import express, { Express, Request, Response } from "npm:express@^4";
+import express, { Express, Request, Response } from "npm:express@4.18.2";
 import morgan from "npm:morgan@^1";
 import "npm:pug@^3";
 
@@ -35,6 +35,6 @@ app.post('/', function (req: Request, res: Response) {
     res.send(`Hello '${req.body.name}'`); 
 });
 
-app.listen(8001, function () {
-    console.log('The application is available on port 8001');
+app.listen(8006, function () {
+    console.log('The application is available on port 8006');
 });        

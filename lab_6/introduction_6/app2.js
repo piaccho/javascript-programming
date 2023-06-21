@@ -18,7 +18,7 @@ app1.get('/', function (request, response) {
 
 app2.all('/submit', function (req, res) {
     // CORS authorized origin
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8001');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8004');
     // Return the greeting in the format preferred by the WWW client
     let name = req.method === 'GET' ? req.query.name : req.body.name;
     
@@ -46,10 +46,10 @@ app2.all('/submit', function (req, res) {
     }
 });
 /* ************************************************ */
-app2.listen(8002, function () {
-    console.log('The server was started on port 8002');
+app2.listen(8005, function () {
+    console.log('The server was started on port 8005');
 });
-app1.listen(8001, function () {
-    console.log('The server was started on port 8001');
+app1.listen(8004, function () {
+    console.log('The server was started on port 8004');
     console.log('To stop the server, press "CTRL + C"');
 });

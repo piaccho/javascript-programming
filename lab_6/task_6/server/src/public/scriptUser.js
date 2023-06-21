@@ -8,6 +8,7 @@ const renderUserVehicles = (userRentedVehicles, userBoughtVehicles) => {
     // Rented vehicles
     const rentedContainer = document.createElement('div');
     rentedContainer.classList.add('mb-2');
+    rentedContainer.setAttribute('id', 'user-vehicles-list-rented-items');
     
     const rentedHeader = document.createElement('b');
     rentedHeader.classList.add('mb-2');
@@ -47,6 +48,7 @@ const renderUserVehicles = (userRentedVehicles, userBoughtVehicles) => {
     // Bought vehicles
     const boughtContainer = document.createElement('div');
     boughtContainer.classList.add('mb-2');
+    boughtContainer.setAttribute('id', 'user-vehicles-list-bought-items');
 
     const boughtHeader = document.createElement('b');
     boughtHeader.classList.add('mb-2');
@@ -114,6 +116,7 @@ function renderVehicleGroups(vehicleGroups, action) {
 
         const cardBody = document.createElement('div');
         cardBody.classList.add('card-body');
+        cardBody.setAttribute('id', `${vehicle.groupIndex}`);
 
         const vehicleInfoTitle = document.createElement('div');
         vehicleInfoTitle.classList.add('vehicle-info-title', 'd-flex', 'flex-column', 'align-items-center');
@@ -145,7 +148,6 @@ function renderVehicleGroups(vehicleGroups, action) {
         }
 
         const amountText = document.createElement('p');
-        amountText.setAttribute('id',`${vehicle.groupIndex}`);
         amountText.classList.add('card-text');
         amountText.textContent = 'Liczba sztuk:';
         pricingTextContainer.appendChild(amountText);
@@ -259,22 +261,64 @@ const buyVehicle = async (vehicleName, groupIndex) => {
     console.log(`Buing vehicle: ${vehicleName}`);
     const data = await requestFetchAPI('POST', { userId: user._id, vehicleName, type: 'buy'  });
     console.log(data);
-    document.getElementById(`${groupIndex}`).textContent = `Liczba sztuk: ${data.vehiclesLeft}`;
-    if (data.vehiclesLeft === 0) {
-        
-    }
-    // getView(currentAction, currentType);
+
+    // // Add to user panel
+    // const listItem = document.createElement('div');
+    // listItem.classList.add('user-vehicles-list-item', 'd-flex', 'justify-content-between', 'align-items-center', 'return-item');
+
+    // const paragraph = document.createElement('p');
+    // paragraph.classList.add('return-item-p');
+    // paragraph.textContent = data.vehicle.name;
+
+    // const button = document.createElement('button');
+    // button.textContent = 'Zwróć';
+    // button.classList.add('btn');
+    // button.classList.add('btn-outline-secondary');
+    // button.addEventListener('click', () => returnVehicle(data.vehicle._id));
+
+    // listItem.appendChild(paragraph);
+    // listItem.appendChild(button);
+    // document.getElementById('user-vehicles-list-bought-items').appendChild(listItem);
+
+
+    // // Decrement counter or disable buttons
+    // const cardElements = document.getElementById(`${groupIndex}`).childNodes;
+    // cardElements[1].childNodestext[1].childNodestext[1].textContent = `Liczba sztuk: ${data.vehiclesLeft}`;
+    // if (data.vehiclesLeft === 0) {
+    //     cardElements[2].innerHTML = '';
+    // }
+    getView(currentAction, currentType);
 };
 
 const rentVehicle = async (vehicleName, groupIndex) => { 
     console.log(`Renting vehicle: ${vehicleName}`);
     const data = await requestFetchAPI('POST', { userId: user._id, vehicleName, type: 'rent' });
     console.log(data);
-    document.getElementById(`${groupIndex}`).textContent = `Liczba sztuk: ${data.vehiclesLeft}`;
-    if (data.vehiclesLeft === 0) {
-        
-    }
-    // getView(currentAction, currentType);
+
+    // // Add to user panel
+    // const listItem = document.createElement('div');
+    // listItem.classList.add('user-vehicles-list-item', 'd-flex', 'justify-content-between', 'align-items-center', 'return-item');
+
+    // const paragraph = document.createElement('p');
+    // paragraph.classList.add('return-item-p');
+    // paragraph.textContent = data.vehicle.name;
+
+    // const button = document.createElement('button');
+    // button.textContent = 'Zwróć';
+    // button.classList.add('btn');
+    // button.classList.add('btn-outline-secondary');
+    // button.addEventListener('click', () => returnVehicle(data.vehicle._id));
+
+    // listItem.appendChild(paragraph);
+    // listItem.appendChild(button);
+    // document.getElementById('user-vehicles-list-rented-items').appendChild(listItem);
+
+    // const cardElements = document.getElementById(`${groupIndex}`).childNodes;
+    // cardElements[1].childNodestext[1].childNodestext[1].textContent = `Liczba sztuk: ${data.vehiclesLeft}`;
+    // if (data.vehiclesLeft === 0) {
+    //     cardElements[2].innerHTML = '';
+    // }
+    getView(currentAction, currentType);
 };
 
 const returnVehicle = async (vehicleId) => { 
