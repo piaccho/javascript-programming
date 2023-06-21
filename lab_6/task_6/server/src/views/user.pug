@@ -1,0 +1,167 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+        link(rel="icon" type="image/x-icon" href="logo.png")
+        link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css', rel='stylesheet', integrity='sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD', crossorigin='anonymous')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css')
+        link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css')
+        style(type='text/css').
+            .dropdown-button {
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                border: none;
+                background-color: transparent;
+                margin: 0 10px;
+                cursor: pointer;
+                text-decoration: underline;
+                color: white;
+                text-decoration: none;
+            }
+            .user-vehicles-list {
+                display: flex;
+                flex-direction: column;
+            }
+
+            #function-toggle {
+                position: fixed;
+                top: 20%;
+                z-index: 100;
+            }
+
+            #function-toggle .card-body {
+                border-radius: 0 5px 5px 0;
+            }
+
+
+            #actions-panel {
+                margin: 0;
+                padding: 0;
+                border-radius: 0 5px 5px 0;
+                height: 50px;
+                width: 70px;
+                transition: 0.3s;
+            }
+
+            #actions-panel *{
+                margin: 0;
+                padding: 0;
+            }
+
+            #actions-panel i {
+                margin-right: 10px;
+                transition: 0.3s;
+                transform: rotateZ(180deg);
+            }
+
+            #actions-panel[aria-expanded="false"] i {
+                transform: rotateZ(0deg);
+            }
+
+            #actions-panel:hover i {
+                display: block;
+            }
+
+            .user-vehicles-list-item {
+                display: flex;
+                flex-direction: row;
+            }
+
+            #main-menu-btn {
+                background: none;
+                border: none;
+                padding: 0;
+                font: inherit;
+                cursor: pointer;
+                outline: inherit;
+            }
+
+            .return-item-p {
+                margin: 0;
+                padding-right: 20px;
+            }
+
+            .return-item {
+                margin-bottom: 10px;
+            }
+
+            #vehicles-cards img {
+                background-color: white;
+            }
+            
+            button {
+                background: none;
+                border: none;
+                padding: 0;
+                cursor: pointer;
+            }
+
+        title Panel użytkownika - Wypożyczalnia rowerów i hulajnóg
+        script(type='text/javascript', id="client-script", src='/scriptUser.js', data-user=user)
+    body
+        // NAVBAR
+        nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.container-fluid
+            button.navbar-toggler(type="button", data-bs-toggle="collapse", data-bs-target="#navbarNavDarkDropdown", aria-controls="navbarNavDarkDropdown", aria-expanded="false", aria-label="Toggle navigation")
+                span.navbar-toggler-icon
+            div.collapse.navbar-collapse.d-flex.justify-content-between.align-items-center.mx-2#navbarNavDarkDropdown
+                ul.navbar-nav
+                    div.d-flex.flex-row.align-items-center
+                        button.nav-link(onclick=`getView();`) Strona główna
+                        li.nav-item.dropdown
+                            a.nav-link.dropdown-toggle(href="#", id="navbarDarkDropdownMenuLink", role="button", data-bs-toggle="dropdown", aria-expanded="false") Wypożycz
+                            ul.dropdown-menu.dropdown-menu-dark(aria-labelledby="navbarDarkDropdownMenuLink")
+                                li
+                                    button.dropdown-button(onclick=`getView("rent", "bike");`) Rower
+                                li
+                                    button.dropdown-button(onclick=`getView("rent", "scooter");`) Hulajnoge
+                        li.nav-item.dropdown
+                            a.nav-link.dropdown-toggle(href="#", id="navbarDarkDropdownMenuLink", role="button", data-bs-toggle="dropdown", aria-expanded="false") Kup
+                            ul.dropdown-menu.dropdown-menu-dark(aria-labelledby="navbarDarkDropdownMenuLink")
+                                li
+                                    button.dropdown-button(onclick=`getView("buy", "bike");`) Rower
+                                li
+                                    button.dropdown-button(onclick=`getView("buy", "scooter");`) Hulajnoge
+                form.d-flex
+                    input.form-control.me-2(type="search", placeholder="Search", aria-label="Search")
+                    button.btn.btn-outline-secondary(type="submit") Search
+
+        // RETURN PANEL
+        #function-toggle
+            p
+                button#actions-panel.d-flex.flex-row.justify-content-center.align-items-center.function-toggle-btn.btn.btn-dark(type='button', data-bs-toggle='collapse', data-bs-target='#collapseActions', aria-expanded='false', aria-controls='collapseActions')
+                    i.fa-solid.fa-bicycle.mr-2
+                    span#user-vehicles-indicator
+            div(style='min-height: 120px')
+                .collapse.collapse-horizontal#collapseActions
+                    .card.card-body
+                        .commands.container-fluid.d-flex.flex-column.align-items-start
+                            div.user-vehicles-list
+                                div#user-vehicles-list-rented
+                                // user rented vehicles
+                                div#user-vehicles-list-bought.mt-4
+                                // user bought vehicles
+                                    
+
+        // VEHICLES CARDS LIST
+        div#vehicles-cards-title.container.d-flex.flex-column.align-items-center
+            h1.mb-2 Wypożyczalnia rowerów i hulajnóg
+            h4 Liczba produktów: 
+                span#vehicles-indicator
+            div#vehicles-cards.d-flex.flex-wrap.flex-row.justify-content-center
+                // all vehicle groups
+
+        // FOOTER
+        footer.container-fluid.d-flex.flex-row.justify-content-between.align-items-center.bg-dark
+            div.text-white
+                i.fa-solid.fa-bicycle(style="color: white")
+                | Wypożyczalnia "Bicykl"
+            div.email
+                i.fa-solid.fa-envelope(style="color: white")
+                a(href="") email@gmail.com
+            div.phone
+                i.fa-solid.fa-phone(style="color: white")
+                a(href="") +48 123 456 789
+
+        script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js", integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN", crossorigin="anonymous")

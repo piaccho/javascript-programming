@@ -19,8 +19,9 @@ const indexController = {
                 lastname: userLastName,
             });
             user.save();
+            console.log(`\n\x1b[32mNew user: ${user.firstname} ${user.lastname} registered\x1b[0m\n`);
         }
-        console.log(`\n\x1b[32mNew user: ${user.firstname} ${user.lastname} registered\x1b[0m\n`);
+        console.log(`\n\x1b[32mUser: ${user.firstname} ${user.lastname} signed in\x1b[0m\n`);
 
         res.redirect(`/user?userId=${user._id}`);
     },
