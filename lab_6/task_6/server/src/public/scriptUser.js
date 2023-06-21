@@ -145,6 +145,7 @@ function renderVehicleGroups(vehicleGroups, action) {
         }
 
         const amountText = document.createElement('p');
+        amountText.setAttribute('id',`${vehicle.groupIndex}`);
         amountText.classList.add('card-text');
         amountText.textContent = 'Liczba sztuk:';
         pricingTextContainer.appendChild(amountText);
@@ -179,7 +180,7 @@ function renderVehicleGroups(vehicleGroups, action) {
             const buyButton = document.createElement('button');
             buyButton.classList.add('btn', 'btn-light');
             buyButton.textContent = 'Kup';
-            buyButton.addEventListener('click', () => buyVehicle(vehicle.name));
+            buyButton.addEventListener('click', () => buyVehicle(vehicle.name, vehicle.groupIndex));
             actionButtons.appendChild(buyButton);
         }
 
@@ -187,7 +188,7 @@ function renderVehicleGroups(vehicleGroups, action) {
             const rentButton = document.createElement('button');
             rentButton.classList.add('btn', 'btn-light');
             rentButton.textContent = 'Wypożycz';
-            rentButton.addEventListener('click', () => rentVehicle(vehicle.name));
+            rentButton.addEventListener('click', () => rentVehicle(vehicle.name, vehicle.groupIndex));
             actionButtons.appendChild(rentButton);
         }
         
@@ -204,21 +205,29 @@ function renderVehicleGroups(vehicleGroups, action) {
 }
 
 async function requestFetchAPI(http_method, requestData) {
-    let url;
+
+    let url, bodyData;
     if (http_method === "GET") {
         url = `http://localhost:8002/user?userId=${encodeURIComponent(requestData.userId)}&action=${encodeURIComponent(requestData.action)}&type=${encodeURIComponent(requestData.type)}`;
     } 
     if (http_method === "POST") {
         url = "http://localhost:8002/user"
+        // const { userId, vehicleName, vehicleId, type } = requestData;
+        // if(userId && vehicleName && type) {
+        //     bodyData = `userId=${encodeURIComponent(userId)}&vehicleName=${encodeURIComponent(vehicleName)}&type=${encodeURIComponent(type)}`;
+        // }
+        // if(userId && vehicleId) { 
+        //     bodyData = `userId=${encodeURIComponent(userId)}&vehicleId=${encodeURIComponent(vehicleId)}`;
+        // }
     }
 
     try {
-        console.log(JSON.stringify(requestData));
         const response = await fetch(url, {
             method: http_method,
             headers: {
                 "Content-Type": 'application/json'
             },
+            // body: bodyData ? bodyData : undefined
             body: http_method === "POST" ? JSON.stringify(requestData) : undefined
         })
 
@@ -240,24 +249,32 @@ const getView = async (action = "all", type = "") => {
     console.log(`Getting view (action: ${action}, type: ${type})`);
     const data = await requestFetchAPI('GET', { action, type, userId: user._id });
 
-    // console.log(data.vehicleGroups);
+    console.log(data.vehicleGroups);
 
     renderVehicleGroups(data.vehicleGroups, action);
     renderUserVehicles(data.userRentedVehicles, data.userBoughtVehicles);
 };
 
-const buyVehicle = async (vehicleName) => { 
+const buyVehicle = async (vehicleName, groupIndex) => { 
     console.log(`Buing vehicle: ${vehicleName}`);
     const data = await requestFetchAPI('POST', { userId: user._id, vehicleName, type: 'buy'  });
     console.log(data);
-    getView(currentAction, currentType);
+    document.getElementById(`${groupIndex}`).textContent = `Liczba sztuk: ${data.vehiclesLeft}`;
+    if (data.vehiclesLeft === 0) {
+        
+    }
+    // getView(currentAction, currentType);
 };
 
-const rentVehicle = async (vehicleName) => { 
+const rentVehicle = async (vehicleName, groupIndex) => { 
     console.log(`Renting vehicle: ${vehicleName}`);
     const data = await requestFetchAPI('POST', { userId: user._id, vehicleName, type: 'rent' });
     console.log(data);
-    getView(currentAction, currentType);
+    document.getElementById(`${groupIndex}`).textContent = `Liczba sztuk: ${data.vehiclesLeft}`;
+    if (data.vehiclesLeft === 0) {
+        
+    }
+    // getView(currentAction, currentType);
 };
 
 const returnVehicle = async (vehicleId) => { 

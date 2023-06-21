@@ -35,10 +35,11 @@ app1.use(express.urlencoded({ extended: false })); // fo
 
 /* ************************************************ */
 
+app2.use(cors());
 app2.use(morgan('dev'));
 app2.use(express.static(path.join(__dirname, 'src/public')));
-app2.use(express.urlencoded({ extended: false })); // for parsing form sent data
-app2.use(cors());
+app2.use(express.urlencoded({ extended: true })); // for parsing form sent data
+app2.use(express.json());
 
 /* ******** */
 /* "Routes" */

@@ -35,10 +35,12 @@ const userController = {
         }
         const allVehicles = await Vehicle.find(query);
 
+        let groupIndex = 0;
         const vehicleGroups = allVehicles.reduce((acc, obj) => {
             const index = acc.findIndex(item => item.name === obj.name);
             if (index === -1) {
-                acc.push({ type: obj.type, brand: obj.brand, model: obj.model, name: obj.name, rent_price: obj.rent_price, buy_price: obj.buy_price, img_url: obj.img_url, amount: 1 });
+                acc.push({ groupIndex: groupIndex, type: obj.type, brand: obj.brand, model: obj.model, name: obj.name, rent_price: obj.rent_price, buy_price: obj.buy_price, img_url: obj.img_url, amount: 1 });
+                groupIndex++;
             } else {
                 acc[index].amount++;
             }
@@ -78,8 +80,10 @@ const userController = {
             await user.save();
             await vehicle.save();
 
+            const leftVehicles = await Vehicle.find({ rented_by: null, bought_by: null, name: vehicleName });
+
             console.log(`\n\x1b[32m${user.firstname} ${user.lastname} ${actionString} ${vehicle.name}\x1b[0m\n`);
-            return res.status(200).json({ message: `Vehicle ${actionString}` });
+            return res.status(200).json({ message: `Vehicle ${actionString}`, leftVehicles: leftVehicles.length });
 
         } catch (error) {
             let actionString = '';

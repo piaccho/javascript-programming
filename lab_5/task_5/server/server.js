@@ -3,7 +3,7 @@ import morgan from 'morgan';
 import express from 'express'
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { MONGODB_URI, PORT_LISTEN } from '#root/config.js'
+import { MONGODB_URI, SERVER_PORT_LISTEN } from '#root/config.js'
 
 
 // connect to db
@@ -50,9 +50,9 @@ app.use('/admin', adminRouter);
 
 /* ************************************************ */
 
-app.listen(PORT_LISTEN, function () {
+app.listen(SERVER_PORT_LISTEN, function () {
     console.log('================================');
-    console.log(`The server was started on port ${PORT_LISTEN}`);
+    console.log(`The server was started on port ${SERVER_PORT_LISTEN}`);
     console.log('To stop the server, press "CTRL + C"');
     console.log('================================');
     console.log('Incoming HTTP requests...');
